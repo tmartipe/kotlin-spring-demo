@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kotlin-spring-demo-deployment
-  namespace: app-namespace
 spec:
   replicas: 3
   selector:
