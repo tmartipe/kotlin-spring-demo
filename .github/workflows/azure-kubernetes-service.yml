@@ -35,11 +35,10 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_REGISTRY: kotlinspringdemo.azurecr.io
-  CONTAINER_NAME: "your-container-name"
+  AZURE_CONTAINER_REGISTRY: kotlinspringdemo
+  CONTAINER_NAME: ghcr.io/tmartipe/kotlin-spring-demo:latest
   RESOURCE_GROUP: ADRComputing
   CLUSTER_NAME: kotlinsprindemok8s
-  DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
 
 jobs:
   buildImage:

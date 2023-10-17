@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kotlin-spring-demo-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kotlin-spring-demo
+  template:
+    metadata:
+      labels:
+        app: kotlin-spring-demo
+    spec:
+      containers:
+        - name: kotlin-spring-demo-deployment
+          image: your-docker-image:tag
+          ports:
+            - containerPort: 8080
