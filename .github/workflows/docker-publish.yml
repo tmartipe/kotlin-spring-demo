@@ -55,7 +55,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '21'
-          distribution: 'microsoft'
+          distribution: 'temurin'
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
