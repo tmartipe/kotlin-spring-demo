@@ -1,11 +1,32 @@
 # Use the official OpenJDK 21 image as a parent image
+FROM adoptopenjdk:11-jre-hotspot AS builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Maven project files (pom.xml) to the container
+COPY pom.xml .
+
+# Download and resolve the dependencies, effectively caching them
+RUN mvn dependency:go-offline -B
+
+# Copy the rest of the application source code to the container
+COPY src src
+
+# Build the Maven project
+RUN mvn package -DskipTests
+
+# Create a production-ready JAR file
+RUN mv target/*.jar app.jar
+
+# Use a smaller base image to create the final image
 FROM adoptopenjdk:11-jre-hotspot
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the JAR file of your Spring Boot application into the container
-COPY target/endpoints-demo-0.0.1-SNAPSHOT.jar app.jar
+# Copy the JAR file built in the previous stage
+COPY --from=builder /app/app.jar .
 
 # Expose the port that your Spring Boot application will run on
 EXPOSE 8080
