@@ -1,5 +1,9 @@
 # Use the official OpenJDK 21 image as a parent image
-FROM adoptopenjdk:11-jre-hotspot AS builder
+FROM eclipse-temurin:17.0.8.1_1-jre-jammy AS builder
+
+# Install Maven
+RUN apt-get update && \
+    apt-get install -y maven
 
 # Set the working directory in the container
 WORKDIR /app
@@ -20,7 +24,7 @@ RUN mvn package -DskipTests
 RUN mv target/*.jar app.jar
 
 # Use a smaller base image to create the final image
-FROM adoptopenjdk:11-jre-hotspot
+FROM  eclipse-temurin:17.0.8.1_1-jre-jammy
 
 # Set the working directory in the container
 WORKDIR /app
