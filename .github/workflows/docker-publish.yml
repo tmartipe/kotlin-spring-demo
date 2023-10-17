@@ -54,8 +54,8 @@ jobs:
       - name: Set up JDK 21 and Maven
         uses: actions/setup-java@v2
         with:
-          java-version: 21
-          distribution: ubuntu
+          java-version: '21'
+          distribution: 'microsoft'
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
