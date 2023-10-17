@@ -75,6 +75,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Make mvnw executable
+        run: chmod +x ./mvnw
+
       - name: Build Spring Boot Application
         run: |
             ./mvnw clean package  
