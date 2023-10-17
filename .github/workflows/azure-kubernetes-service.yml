@@ -31,7 +31,7 @@ name: Build and deploy an app to AKS
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   workflow_dispatch:
 
 env:
@@ -63,13 +63,20 @@ jobs:
         run: |
           az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
 
+      - name: Run Azure CLI commands
+        run: |
+            az account show
+            az group list
+            pwd 
+
+
   deploy:
     permissions:
       actions: read
       contents: read
       id-token: write
     runs-on: ubuntu-latest
-    needs: [buildImage]
+    needs: [ buildImage ]
     steps:
       # Checks out the repository this file is in
       - uses: actions/checkout@v3
