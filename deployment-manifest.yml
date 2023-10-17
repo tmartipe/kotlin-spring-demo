@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: kotlin-spring-demo-deployment
-          image: your-docker-image:tag
+          image:  ghcr.io/tmartipe/kotlin-spring-demo:latest
           ports:
             - containerPort: 8080

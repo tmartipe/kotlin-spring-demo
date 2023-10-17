@@ -39,6 +39,7 @@ env:
   CONTAINER_NAME: ghcr.io/tmartipe/kotlin-spring-demo
   RESOURCE_GROUP: ADRComputing
   CLUSTER_NAME: kotlinsprindemok8s
+  DEPLOYMENT_MANIFEST_PATH: ./deployment-manifest.yml
 
 jobs:
   buildImage:
